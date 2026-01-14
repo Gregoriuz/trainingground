@@ -1,0 +1,353 @@
+/* ======================= GLOBAL RESET & DARK MODE ======================= */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #000;
+    color: #fff;
+    scroll-behavior: smooth;
+}
+
+/* Semua section default gelap */
+section {
+    background-color: #111;
+}
+
+/* ======================= NAVBAR ======================= */
+.navbar {
+    background-color: #111 !important;
+}
+
+.navbar-brand img {
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.1);
+}
+
+.navbar-nav .nav-link {
+    margin-left: 15px;
+    font-weight: 500;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #ff9800;
+}
+
+/* ======================= HERO SECTION ======================= */
+.hero {
+    background-color: #000 !important;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    filter: brightness(0.55);
+}
+
+.hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 15px;
+    color: #fff;
+    background: transparent !important;
+    transform: translateY(-30px);
+}
+
+.hero h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 12px rgba(0,0,0,0.6);
+}
+
+/* ======================= BUTTON ======================= */
+.btn-warning {
+    background-color: #ff9800;
+    border: none;
+    font-weight: 600;
+    padding: 12px 30px;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background-color: #e68900;
+    color: #000;
+}
+
+
+/* ======================= CARD GLOBAL (FIX PUTIH) ======================= */
+.card {
+    background-color: #1a1a1a !important;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-body {
+    background-color: #1a1a1a;
+}
+
+.card h5,
+.card p {
+    color: #fff;
+}
+
+.card-img-top {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* ======================= ABOUT US ======================= */
+.about-section {
+    background-color: #111;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  
+  .about-title span {
+    color: #ff9800;
+  }
+  
+  .about-desc {
+    max-width: 700px;
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+  
+  .about-card {
+    background-color: #1a1a1a;
+    border-radius: 14px;
+    padding: 30px 25px;
+    text-align: center;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .about-card i {
+    font-size: 2.5rem;
+    color: #ff9800;
+    margin-bottom: 15px;
+  }
+  
+  .about-card h5 {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  .about-card p {
+    color: #bbb;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .about-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(255,152,0,0.25);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-title {
+      font-size: 2rem;
+    }
+  
+    .about-desc {
+      font-size: 1rem;
+    }
+  }
+  
+/* ======================= EVENT SECTION ======================= */
+#events h2 {
+    font-weight: 700;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+#events .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(255,152,0,0.25);
+}
+
+#events .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* ======================= TIPS & TRIK ======================= */
+#tips h2 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+#tips .card {
+    text-align: center;
+    padding: 1.5rem;
+    height: 100%;
+}
+
+#tips .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(255,152,0,0.2);
+}
+
+#tips .card i {
+    color: #ff9800;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+/* ======================= CONTACT ======================= */
+#contact {
+    position: relative;
+  }
+  
+  #contact::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(
+      to bottom,
+      rgba(26,26,26,0),
+      #1a1a1a
+    );
+    pointer-events: none;
+  }
+  
+.contact-card {
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid #ff9800;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(255,152,0,0.3);
+}
+
+/* FORM DARK MODE */
+.form-control {
+    background-color: #222;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: 1px solid #444;
+}
+
+.form-control::placeholder {
+    color: #aaa;
+}
+
+.form-control:focus {
+    background-color: #222;
+    color: #fff;
+    border-color: #ff9800;
+    box-shadow: none;
+}
+
+/* ======================= LINK CARD ======================= */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover .card {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(255,152,0,0.3);
+}
+
+/* ======================= FOOTER ======================= */
+.footer {
+    background: linear-gradient(
+      to bottom,
+      #1a1a1a 0%,
+      #111 40%,
+      #000 100%
+    );
+    padding: 40px 0;
+  }
+  
+.footer-icons-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .footer-icons-center a {
+    font-size: 1.6rem;
+    color: #fff;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .footer-icons-center a:hover {
+    color: #ff9800;
+    transform: scale(1.25);
+  }
+
+  
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+}

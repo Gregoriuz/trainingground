@@ -1,3 +1,43 @@
+<?php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "data pelari";
+
+$conn = mysqli_connect($host, $user, $pass, $db);
+if (!$conn) {
+    die("Koneksi gagal: " . mysqli_connect_error());
+}
+
+// ================= PROSES SIMPAN KONTAK =================
+$alert = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nama  = mysqli_real_escape_string($conn, $_POST['nama']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $pesan = mysqli_real_escape_string($conn, $_POST['pesan']);
+
+    $query = "INSERT INTO contact_messages (nama, email, pesan)
+              VALUES ('$nama', '$email', '$pesan')";
+
+            if (mysqli_query($conn, $query)) {
+              $alert = "<div class='alert alert-success'>Pesan berhasil dikirim!</div>";
+    }       else {
+              $alert = "<div class='alert alert-danger'>Gagal mengirim pesan!</div>";
+  }
+}
+
+// ================= DATA CHART =================
+$chart_labels = [];
+$chart_data   = [];
+
+$chartQuery = mysqli_query($conn, "SELECT kota, jumlah_event FROM trail_events");
+
+while ($row = mysqli_fetch_assoc($chartQuery)) {
+    $chart_labels[] = $row['kota'];
+    $chart_data[]   = $row['jumlah_event'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -230,11 +270,16 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="contact-card p-4 shadow-sm rounded">
-          <form>
-            <input type="text" class="form-control mb-3" placeholder="Nama Anda">
-            <input type="email" class="form-control mb-3" placeholder="Email Anda">
-            <textarea class="form-control mb-3" rows="5" placeholder="Tulis pesan Anda"></textarea>
+          <form method="POST" action="#contact">
+            <input type="text" name="nama" class="form-control mb-3" placeholder="Nama Anda" required>
+            <input type="email" name="email" class="form-control mb-3" placeholder="Email Anda" required>
+            <textarea name="pesan" class="form-control mb-3" rows="5" placeholder="Tulis pesan Anda" required></textarea>
             <button type="submit" class="btn btn-warning w-100 btn-submit">Kirim Pesan</button>
+             <?php if ($alert): ?>
+              <div class="alert alert-warning text-center">
+              <?= $alert ?>
+              </div>
+             <?php endif; ?>
           </form>
         </div>
       </div>
@@ -310,31 +355,22 @@
 
 <script>
   const ctx = document.getElementById('trailChart');
-  
+
+  const chartLabels = <?= json_encode($chart_labels); ?>;
+  const chartData   = <?= json_encode($chart_data); ?>;
+
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Solo', 'Jogja', 'Bandung', 'Bali', 'Malang'],
+      labels: chartLabels,
       datasets: [{
-        label: 'Jumlah Event Trail Run (2026)',
-        data: [8, 12, 10, 15, 9],
+        label: 'Jumlah Event Trail Run',
+        data: chartData,
         backgroundColor: 'rgba(255, 152, 0, 0.7)'
       }]
     },
     options: {
       responsive: true,
-  
-      animations: {
-        y: {
-          from: 0,
-          duration: 1200,
-          easing: 'easeOutQuart',
-          delay: (context) => {
-            return context.dataIndex * 300; // ⬅️ INI KUNCINYA
-          }
-        }
-      },
-  
       plugins: {
         legend: {
           labels: { color: '#fff' }
@@ -353,8 +389,7 @@
       }
     }
   });
-  </script>
-  
+</script>
   
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
@@ -367,3 +402,4 @@
 
 </body>
 </html>
+
